@@ -19,9 +19,21 @@ function Home() {
     await api.post('/usuarios', {
       name: inputName.current.value,
       age: inputAge.current.value,
-      email: inputEmail.current.value, // Correção aqui
+      email: inputEmail.current.value,
     })
+    
+    //Limpa os campos após o cadastro//
+    inputName.current.value = ''
+    inputAge.current.value = ''
+    inputEmail.current.value = ''
+
     getUsers(); // Atualizar a lista de usuários após a criação
+  }
+
+  async function deleteUsers(id){ 
+    const usersFromApi = await api.delete(`/usuarios/${id}`)
+
+    getUsers();
   }
 
   useEffect(() => {
@@ -45,7 +57,7 @@ function Home() {
             <p>Idade: <span>{user.age}</span></p>
             <p>E-mail: <span>{user.email}</span></p>
           </div>
-          <button>
+          <button onClick={() => deleteUsers(user.id)}>
             <img src={Trash} alt="Deletar usuário"/>
           </button>
         </div>
