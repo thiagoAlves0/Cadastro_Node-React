@@ -1,0 +1,11 @@
+instruções
+
+senha mongo db:
+thiago
+123
+
+npm run dev // iniciar o vite no front
+
+node --watch server.js // iniciar o bd
+
+npx prisma studio 
